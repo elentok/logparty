@@ -1,13 +1,48 @@
 #!/usr/bin/env coffee
 
-prettyjson = require 'prettyjson'
+util = require 'util'
+nomnom = require 'nomnom'
+clc = require 'cli-color'
 logparty = require '../lib/logparty'
 parseRequest = require('../lib/request_parser').parse
+
+nomnom.option 'limit',
+  abbr: 'l'
+  help: 'limit body output to N characters'
+  
+options = nomnom.parse()
 
 process.stdin.resume()
 process.stdin.setEncoding('utf8')
 
 buffer = ''
+
+showRequest = (request) ->
+  console.log "========================================="
+  console.log "#{clc.green('Server:')} #{request.server}"
+  console.log clc.green('Headers:')
+
+  showRequestHeaders(request.headers)
+  showRequestBody(request.body)
+
+showRequestHeaders = (headers) ->
+  if headers?
+    headers.forEach (header) ->
+      header = header.replace /^([^:]+):/, (match, name) -> clc.blue(name) + ":"
+      console.log "  - #{header}" if header.length > 0
+
+showRequestBody = (body) ->
+  console.log clc.green('Body:')
+  limited = false
+
+  unless typeof(body) is 'string'
+    body = util.inspect(body)
+
+  if options.limit?
+    body = body.substring(0, options.limit) +
+      "\n#{clc.red("there's more...")}"
+
+  console.log body
 
 process.stdin.on 'data', (chunk) ->
   chunk = buffer + chunk.toString()
@@ -15,12 +50,12 @@ process.stdin.on 'data', (chunk) ->
   result = logparty.parseChunk(chunk)
   result.requests.forEach (rawRequest) ->
     request = parseRequest(rawRequest)
-    console.log "========================================="
-    console.log prettyjson.render(request)
+    showRequest(request)
 
   if result.after? and result.after.length > 0
     buffer = result.after
 
 process.stdin.on 'end', ->
   endRequest()
+
 

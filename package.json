@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "coffee-script": "1.6.x",
-    "prettyjson": "0.8.x"
+    "cli-color": "0.2.x",
+    "nomnom": "1.6.x"
   },
   "devDependencies": {
     "mocha": "1.8.x",

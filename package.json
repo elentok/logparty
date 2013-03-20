@@ -1,7 +1,7 @@
 {
   "name": "logparty",
   "description": "cleans up httparty logs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/elentok/logparty",
   "author": {
     "name": "David Elentok",

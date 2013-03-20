@@ -1,0 +1,12 @@
+-> "BEFORE"
+opening connection to localhost...
+opened
+<- "GET /one"
+Conn close
+opening connection to localhost...
+opened
+<- "GET /two"
+Conn close
+opening connection to localhost...
+opened
+<- "AFTER"

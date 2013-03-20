@@ -1,0 +1,37 @@
+opening connection to localhost...
+opened
+<- "GET /bla"
+-> "HTTP/1.1 200 OK\r\n"
+-> "Server: Apache-Coyote/1.1\r\n"
+-> "Content-Type: application/json\r\n"
+-> "\r\n"
+-> "2000\r\n"
+reading 8192 bytes...
+-> "{\"status\":\"success\",\"query\":"
+-> "null,\"bla\":0.0"
+read 8192 bytes
+reading 2 bytes...
+-> "\r\n"
+read 2 bytes
+-> "2000\r\n"
+reading 8192 bytes...
+-> ",\"more_bla\":12.3"
+-> ",\"and_more_bla\":12.6"
+read 8192 bytes
+reading 2 bytes...
+-> "\r\n"
+read 2 bytes
+-> "2000\r\n"
+reading 2 bytes...
+-> "\r\n"
+read 2 bytes
+-> "2000\r\n"
+reading 2042 bytes...
+-> ",\"description\":\"OK\"}"
+read 2042 bytes
+reading 2 bytes...
+-> "\r\n"
+read 2 bytes
+-> "0\r\n"
+-> "\r\n"
+Conn close

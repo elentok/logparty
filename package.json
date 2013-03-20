@@ -1,0 +1,11 @@
+{
+  "name": "logparty",
+  "version": "0.0.1",
+  "dependencies": {
+    "prettyjson": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*"
+  }
+}

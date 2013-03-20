@@ -1,0 +1,26 @@
+#!/usr/bin/env coffee
+
+prettyjson = require 'prettyjson'
+logparty = require '../lib/logparty'
+parseRequest = require('../lib/request_parser').parse
+
+process.stdin.resume()
+process.stdin.setEncoding('utf8')
+
+buffer = ''
+
+process.stdin.on 'data', (chunk) ->
+  chunk = buffer + chunk.toString()
+  buffer = ''
+  result = logparty.parseChunk(chunk)
+  result.requests.forEach (rawRequest) ->
+    request = parseRequest(rawRequest)
+    console.log "========================================="
+    console.log prettyjson.render(request)
+
+  if result.after? and result.after.length > 0
+    buffer = result.after
+
+process.stdin.on 'end', ->
+  endRequest()
+

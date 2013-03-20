@@ -1,11 +1,42 @@
 {
   "name": "logparty",
+  "description": "cleans up httparty logs",
   "version": "0.0.1",
+  "homepage": "https://github.com/elentok/logparty",
+  "author": {
+    "name": "David Elentok",
+    "email": "3david@gmail.com",
+    "url": "http://www.elentok.com"
+  },
+  "bin": {
+    "logparty": "./bin/logparty"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elentok/logparty.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elentok/logparty/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/elentok/logparty/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/logparty.coffee",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script --reporter spec"
+  },
   "dependencies": {
-    "prettyjson": "*"
+    "coffee-script": "1.6.x",
+    "prettyjson": "0.8.x"
   },
   "devDependencies": {
-    "mocha": "*",
-    "chai": "*"
+    "mocha": "1.8.x",
+    "chai": "1.5.x"
   }
 }

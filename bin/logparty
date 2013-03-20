@@ -8,7 +8,7 @@ parseRequest = require('../lib/request_parser').parse
 
 nomnom.option 'limit',
   abbr: 'l'
-  help: 'limit body output to N characters'
+  help: 'limit body output to N lines'
   
 options = nomnom.parse()
 
@@ -36,11 +36,13 @@ showRequestBody = (body) ->
   limited = false
 
   unless typeof(body) is 'string'
-    body = util.inspect(body)
+    body = util.inspect(body, colors: true)
 
-  if options.limit?
-    body = body.substring(0, options.limit) +
-      "\n#{clc.red("there's more...")}"
+  lines = body.split("\n")
+  if options.limit? and lines.length > options.limit
+    lines = lines.slice(0, options.limit)
+    lines.push clc.red("(there's more...)")
+    body = lines.join("\n")
 
   console.log body
 

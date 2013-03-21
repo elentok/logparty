@@ -57,7 +57,3 @@ process.stdin.on 'data', (chunk) ->
   if result.after? and result.after.length > 0
     buffer = result.after
 
-process.stdin.on 'end', ->
-  endRequest()
-
-
